@@ -1,0 +1,115 @@
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  
+  
+<div id="checkoutApp">
+  <div class="header">
+    <h1 class="h1">Products</h1>
+  </div>
+
+  <main class="cards-layout" ng-controller="checkoutCtrl">
+    <div class="row cards">
+        <div class="col-md-6">
+            <div class="card membership-card ng-scope" ng-click="selectOption('trial');" ng-class="{'selected': selected == 'trial'}">
+                <div class="card-top-wrapper">
+                    <div class="radio"></div>
+                    <div class="carrot"></div>
+                    <div class="price-wrapper">
+                        <div class="product-title">Free Trial</div>
+                        <div class="price-inner-wrapper">
+                            <div class="currency-symbol">$</div>
+                            <div class="price">0</div>
+                            <span class="checkout-description hanging-effect">for <br>7-days</span>
+                        </div>
+                        <div class="price-inner-wrapper-mobile">
+                            <div class="price">$0 for 7 days ($39.99/month after)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="description">YOUR FREE TRIAL INCLUDES:</div>
+                <ul class="value-prop-list">
+                    <li class="">
+                        <span class="value-icon icon icon-document"></span>
+                        <span class="value-text">Get your Premium document with Document Defense<sup>®</sup></span>
+                    </li><li class="">
+                        <span class="value-icon icon icon-documents"></span>
+                        <span class="value-text">Create additional documents</span>
+                    </li>
+                    <li class="">
+                        <span class="value-icon icon icon-sign"></span>
+                        <span class="value-text">Sign documents online in seconds</span>
+                    </li>
+                    <li class="">
+                        <span class="value-icon icon icon-ask"></span>
+                        <span class="value-text">Ask a lawyer your legal questions</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <div class="col-md-6">
+            <div class="card single-card" ng-click="selectOption('singledoc');" ng-class="{'selected': selected == 'singledoc'}">
+                <div class="card-top-wrapper">
+                    <div class="radio"></div>
+                    <div class="carrot"></div>
+                    <div class="price-wrapper">
+                        <div class="product-title">Buy Document</div>
+                        <div class="price-inner-wrapper">
+                            <div class="currency-symbol">$</div>
+                            <div class="price">39.99</div>
+                        </div>
+                        <div class="price-inner-wrapper-mobile">
+                            <div class="price">$39.99</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="description">Purchase includes:</div>
+                <ul class="value-prop-list">
+                    <li class="">
+                        <span class="value-icon icon icon-document"></span>
+                        <span class="value-text">Get your Premium document</span>
+                    </li>
+                    <li class="strike">
+                        <span class="value-icon icon icon-documents"></span>
+                        <span class="value-text">Create additional documents</span>
+                    </li>
+                    <li class="strike">
+                        <span class="value-icon icon icon-ask"></span>
+                        <span class="value-text">Ask a lawyer your legal questions</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </main>
+
+</div>
+
+<script>
+  
+  var staticPath = "{{staticPath}}";
+  
+  window.oc = window.oc || {};
+  oc.cmd = oc.cmd || [];
+
+  oc.cmd.push(function(oc){
+
+    // Ensure window.angular is available. If not, it is appended to the head first.
+    // If multiple oc angular components are in the page, angular will be loaded only once
+    // and only if it is not there already ;)
+
+    oc.require('angular', 'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.0.2/angular.js', function (angular){
+      
+      // Now we load our Angular controllers
+      oc.require(['{{staticPath}}js/checkoutApp.js', '{{staticPath}}css/checkoutStyles.css'], function () {
+        // Now bootstrap Angular component's root to be recognised as app root
+        // This is needed to asyncronously load Angular apps - classic approach would be to add an ng-app
+        // on the element's root but this would make angular to error
+
+        angular.bootstrap(document, ["checkoutApp"]);
+
+      });
+    });
+  });
+  
+  </script>
